@@ -1,12 +1,17 @@
 import json
 
+shabbat_tasks = ["Buying challah", "cooking chamin", "lighting candles", "setting the table", "turning off the phone"]
+tasks_performed = [False, False, False, False, False]
+
 def start():
-    with open('shabbat_checklist.txt', 'r') as file:
-        file_array = json.load(file)
-        global shabbat_tasks
-        global tasks_performed
-        shabbat_tasks = file_array[0]
-        tasks_performed = file_array[1]
+    try:
+        global shabbat_tasks, tasks_performed
+        with open('shabbat_checklist.txt', 'r') as file:
+            file_array = json.load(file)
+            shabbat_tasks = file_array[0]
+            tasks_performed = file_array[1]
+    except:
+        pass
     menu()
 
 def menu():
@@ -33,8 +38,8 @@ def menu():
                 break
 
 def print_shabbat_tasks():
-    for index, task in enumerate(shabbat_tasks):
-        print(index + 1, task)
+    for i in range(len(shabbat_tasks)):
+        print(f"{i + 1} {shabbat_tasks[i]} {'✔️' if tasks_performed[i] else ''}")
 
 def mark_task_done():
     num_task = int(input("Enter the number of the task performed: "))
