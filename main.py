@@ -44,8 +44,7 @@ def print_shabbat_tasks():
 def mark_task_done():
     num_task = int(input("Enter the number of the task performed: "))
     tasks_performed[num_task - 1] = True
-    for i in range(len(shabbat_tasks)):
-        print(f"{shabbat_tasks[i]} {'✔️' if tasks_performed[i] else ''}")
+    print_shabbat_tasks()
 
 def add_task():
     new_task = input("Enter the task you want to add: ")
